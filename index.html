@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Jornadas do GlowHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: a short shelf of journeys, each a night card with a still of the screens. */
+  :root {
+    --page: #eef2f9;
+    --ink: #153258;
+    --ink-2: #52607d;
+    --accent: #c81d78;
+    --night: #0a1634;
+    --night-line: #2a4180;
+    --on-night: #eef3ff;
+    --on-night-2: #b9c4dc;
+    --lime: #c6ff3d;
+    --font: 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --page: #050b1d; --ink: #e6ecfa; --ink-2: #a3b0cf; --accent: #ff70b8; --night-line: #34508f; color-scheme: dark; }
+  }
+  body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 var(--font); }
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 40px 56px;
+    display: grid;
+    gap: 28px;
+  }
+  .brand { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink-2); }
+  .brand::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  h1 { margin: 6px 0 8px; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+  .lede { margin: 0; max-width: 64ch; color: var(--ink-2); }
+  .journeys { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  .journey {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--night-line);
+    background: var(--night);
+    color: var(--on-night);
+    text-decoration: none;
+  }
+  .journey img { display: block; width: 100%; height: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .journey .text { min-width: 0; padding: 22px 24px; display: grid; gap: 8px; align-content: center; }
+  .journey .eyebrow { margin: 0; color: var(--lime); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; }
+  .journey h2 { margin: 0; font-size: 24px; line-height: 1.2; font-weight: 600; text-wrap: balance; }
+  .journey p { margin: 0; color: var(--on-night-2); }
+  .journey .go { color: var(--lime); font-weight: 500; }
+  .journey:hover h2 { text-decoration: underline; }
+  .journey:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 720px) { .journey { grid-template-columns: 1fr; } }
+  footer { max-width: 70ch; font-size: 13px; color: var(--ink-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="brand">GlowHub</p>
+    <h1>Jornadas do GlowHub</h1>
+    <p class="lede">O GlowHub nas telas de verdade. Cada jornada é um vídeo em capítulos: cada pessoa entra com o próprio login, clica e preenche, e a legenda diz em que ponto da história estamos.</p>
+  </header>
+  <ul class="journeys">
+    <li>
+      <a class="journey" href="financeiro/">
+        <img src="financeiro/capa.jpg" alt="A Visão geral do Financeiro, com as luzes da rede e o vendido de ontem" width="1280" height="800">
+        <div class="text">
+          <p class="eyebrow">19 capítulos · 30 minutos</p>
+          <h2>Financeiro, cada funcionalidade do começo ao fim</h2>
+          <p>A venda e o ERPFLEX, os pagamentos, o PIX, os recebíveis, as festas, as devoluções, as tratativas, o caixa e o que a Central faz sozinha.</p>
+          <span class="go">Assistir</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <footer>Gravado em 27/10/2026 na demonstração do GlowHub, sobre o simulador: as famílias, os clientes e os valores são inventados.</footer>
+</div>
+</body>
+</html>
