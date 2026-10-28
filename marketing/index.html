@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Vídeo do Financeiro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: a screening room. The tour's night stage holds the player and the card on screen;
+     the chapter program runs beside it on a wide screen and below it on a phone. */
+  :root {
+    --page: #eef2f9;
+    --paper: #ffffff;
+    --ink: #153258;
+    --ink-2: #52607d;
+    --line: #dbe2ee;
+    --row-hover: #f3f6fb;
+    --accent: #c81d78;
+    --screen: #000000;
+    --night: #0a1634;
+    --night-2: #13275c;
+    --night-line: #2a4180;
+    --on-night: #eef3ff;
+    --on-night-2: #b9c4dc;
+    --lime: #c6ff3d;
+    --sky: #8fd3ff;
+    --amber: #ffd36e;
+    --font: 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --mono: ui-monospace, 'Cascadia Mono', Consolas, 'SFMono-Regular', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #050b1d;
+      --paper: #0c1838;
+      --ink: #e6ecfa;
+      --ink-2: #a3b0cf;
+      --line: #1f3166;
+      --row-hover: #12224a;
+      --accent: #ff70b8;
+      --night-line: #34508f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #050b1d;
+    --paper: #0c1838;
+    --ink: #e6ecfa;
+    --ink-2: #a3b0cf;
+    --line: #1f3166;
+    --row-hover: #12224a;
+    --accent: #ff70b8;
+    --night-line: #34508f;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 28px 44px;
+    display: grid;
+    gap: 24px;
+  }
+
+  .top { display: grid; gap: 8px; }
+  .brand {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+  }
+  .brand::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(28px, 4.2vw, 42px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .lede { margin: 0; max-width: 70ch; color: var(--ink-2); }
+  .meta { margin: 0; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+  .grid { display: grid; gap: 20px; align-items: start; }
+  @media (min-width: 1040px) {
+    .grid { grid-template-columns: minmax(0, 1fr) 340px; }
+  }
+
+  .stage {
+    min-width: 0;
+    display: grid;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid var(--night-line);
+    color: var(--on-night);
+    background: radial-gradient(1200px 600px at 20% 0%, var(--night-2) 0%, var(--night) 60%);
+  }
+  .screen {
+    aspect-ratio: 16 / 10;
+    max-width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--screen);
+  }
+  .screen video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--screen);
+  }
+  .now { min-width: 0; display: grid; gap: 14px; padding: 2px 8px 10px; }
+  .now-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+  .eyebrow {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--lime);
+    font-variant-numeric: tabular-nums;
+  }
+  .nav { display: flex; gap: 8px; }
+  .nav button {
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 40px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--night-line);
+    background: transparent;
+    color: var(--on-night);
+    cursor: pointer;
+  }
+  .nav button:hover:not(:disabled) { background: var(--night-2); }
+  .nav button:disabled { opacity: 0.45; cursor: default; }
+  .now h2 {
+    margin: 0;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .who { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .who li {
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--night-line);
+    background: var(--night-2);
+    color: var(--on-night-2);
+  }
+  .flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  @media (min-width: 720px) {
+    .flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  .flow li { min-width: 0; padding-top: 10px; border-top: 2px solid var(--night-line); }
+  .flow b { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+  .flow p { margin: 0; line-height: 1.55; }
+  .flow li:nth-child(1) { border-color: var(--sky); }
+  .flow li:nth-child(1) b { color: var(--sky); }
+  .flow li:nth-child(2) { border-color: var(--amber); }
+  .flow li:nth-child(2) b { color: var(--amber); }
+  .flow li:nth-child(3) { border-color: var(--lime); }
+  .flow li:nth-child(3) b { color: var(--lime); }
+  .ex { margin: 0; max-width: 82ch; line-height: 1.55; color: var(--on-night-2); }
+  .ex b { font-weight: 500; color: var(--lime); }
+  .seq {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    font-size: 14px;
+    color: var(--on-night-2);
+    cursor: pointer;
+  }
+  .seq input { width: 18px; height: 18px; margin: 0; accent-color: var(--lime); }
+
+  .program {
+    min-width: 0;
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+  @media (min-width: 1040px) {
+    .program {
+      position: sticky;
+      top: calc(16px + env(safe-area-inset-top, 0px));
+      max-height: calc(100dvh - 32px);
+      overflow: auto;
+    }
+  }
+  .program h2 {
+    margin: 8px 10px 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+  }
+  .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .list button {
+    font: inherit;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2em minmax(0, 1fr) auto;
+    column-gap: 10px;
+    align-items: baseline;
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+  }
+  .list button:hover { background: var(--row-hover); }
+  .list .n, .list .d { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .list .t { min-width: 0; font-weight: 500; }
+  .list .w { grid-column: 2 / 4; margin-top: 2px; font-size: 12.5px; color: var(--ink-2); }
+  .list button[aria-current='true'],
+  .list button[aria-current='true']:hover { background: var(--night); color: var(--on-night); }
+  .list button[aria-current='true'] .n { color: var(--lime); }
+  .list button[aria-current='true'] .d,
+  .list button[aria-current='true'] .w { color: var(--on-night-2); }
+
+  .about { max-width: 78ch; display: grid; gap: 10px; color: var(--ink-2); }
+  .about h2 { margin: 0; font-size: 16px; font-weight: 600; color: var(--ink); }
+  .about p { margin: 0; }
+  code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    padding: 1px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    overflow-wrap: anywhere;
+  }
+
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .stage button:focus-visible, .seq input:focus-visible, .list button[aria-current='true']:focus-visible {
+    outline-color: var(--lime);
+  }
+  [hidden] { display: none !important; }
+  .summary { margin: 0; color: var(--on-night); }
+  .refs { margin: 0; font-size: 12.5px; color: var(--on-night-2); }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  body { margin: 0; }
+  .brand a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="brand"><a href="../">Jornadas do GlowHub</a> · Marketing</p>
+    <h1>Vídeo do Marketing</h1>
+    <p class="lede">As 8 funcionalidades do Marketing no guia “Comercial e Marketing do GlowHub” que estão no contrato, feitas nas telas da demonstração: as contas de anúncio, o painel das campanhas, a base de clientes e as ações da base, as indicações e os convidados da festa.</p>
+    <p class="meta">8 capítulos · 7 minutos · gravado em 28/10/2026</p>
+  </header>
+
+  <main class="grid">
+    <section class="stage" aria-labelledby="title">
+      <div class="screen">
+        <video id="video" controls playsinline muted preload="metadata"></video>
+      </div>
+      <div class="now">
+        <div class="now-h">
+          <p class="eyebrow" id="eyebrow"></p>
+          <div class="nav">
+            <button type="button" id="prev">Anterior</button>
+            <button type="button" id="next">Próximo</button>
+          </div>
+        </div>
+        <h2 id="title"></h2>
+        <ul class="who" id="who" aria-label="Quem age"></ul>
+        <ol class="flow" id="flow">
+          <li><b>Início</b><p id="start"></p></li>
+          <li><b>Meio</b><p id="middle"></p></li>
+          <li><b>Fim</b><p id="end"></p></li>
+        </ol>
+        <p class="ex" id="ex"><b>Exemplo do guia:</b> <span id="example"></span></p>
+        <p class="summary" id="summary"></p>
+        <p class="ex" id="checkLine"><b>Na operação, confira:</b> <span id="check"></span></p>
+        <p class="refs" id="refs"></p>
+        <label class="seq" for="seq">
+          <input type="checkbox" id="seq" checked>
+          Tocar o próximo capítulo quando este acabar
+        </label>
+      </div>
+    </section>
+
+    <nav class="program" aria-labelledby="program-title">
+      <h2 id="program-title">Capítulos</h2>
+      <ol class="list" id="list"></ol>
+    </nav>
+  </main>
+
+  <footer class="about">
+    <h2>Sobre a gravação</h2>
+    <p>Gravado pelo Playwright em 28/10/2026, na demonstração do GlowHub, sobre o simulador das contas de anúncio: as famílias, os clientes e os valores são inventados.</p>
+    <p>Ficaram de fora a origem das conversas, os links e códigos de origem, a qualidade da atribuição e o analista: o contrato não relaciona as campanhas às conversas nem às festas e deixa de fora as análises por inteligência artificial (item 2.5 e Anexo I, D.3).</p>
+  </footer>
+</div>
+
+<script>
+  const CHAPTERS = [{"n":1,"total":8,"id":"m-contas","title":"Contas e mapeamento de campanhas","start":"","middle":"","end":"","example":"","area":"Marketing / Mídia","state":"Configuração","summary":"Meta e Google fornecem investimento e indicadores. Campanhas são mapeadas para assunto e unidade; há plano B por arquivo.","check":"Credenciais, acessos e mapeamento precedem o uso real. Investimento sem mapeamento não entra silenciosamente no custo por festa de uma unidade.","refs":"RF-MKT-09 a 11 · contas de anúncio","who":["Marketing"],"seconds":45,"file":"01-contas"},{"n":2,"total":8,"id":"m-midia","title":"Painel de mídia e campanhas","start":"","middle":"","end":"","example":"","area":"Marketing / Mídia","state":"Disponível","summary":"Investimento, conversas, qualificadas e festas da coorte permitem comparar canais, campanhas e unidades. O canal Recorrente integra a lista de origens.","check":"Número da plataforma e número observado pelo GlowHub são medidas distintas. Campanha da rede segue a política de rateio; sem base para o cálculo, mostre sem fonte.","refs":"RF-MKT-12 a 17 · /marketing e /marketing/campanhas","who":["Marketing"],"seconds":43,"file":"02-midia"},{"n":3,"total":8,"id":"m-base","title":"Importar a base do P4Play","start":"","middle":"","end":"","example":"","area":"Marketing / Base","state":"Configuração","summary":"A base reúne responsáveis, crianças e visitas conforme o arquivo e a finalidade. A importação é idempotente e mantém origem e controles de privacidade.","check":"O relatório Clientes não prova consentimento. A base importada começa sem autorização quando a evidência não existe; PARAR e supressão de anonimizado são respeitados.","refs":"RF-MKT-20 · /marketing/base","who":["Administração","Marketing"],"seconds":62,"file":"03-base"},{"n":4,"total":8,"id":"m-aniversariantes","title":"Régua de aniversariantes","start":"","middle":"","end":"","example":"","area":"Marketing / Base","state":"Configuração","summary":"Seleciona famílias elegíveis pela data da criança e pela política, usando modelo de marketing aprovado.","check":"Exige consentimento específico de aniversário do responsável, além dos controles do canal. Texto, finalidade e tratamento de dados de criança precisam da validação da Glow Park e de seu jurídico.","refs":"RF-MKT-23 · /marketing/acoes","who":["Marketing","Administração"],"seconds":46,"file":"04-aniversariantes"},{"n":5,"total":8,"id":"m-horarios","title":"Horários vazios","start":"","middle":"","end":"","example":"","area":"Marketing / Base","state":"Configuração","summary":"Ofertas para horários disponíveis usam os grupos e limites da ação; o resultado pode ser acompanhado até a oportunidade e a festa.","check":"A oferta precisa de disponibilidade e condição válidas. Não existe autorização genérica para disparar a toda a base. Mensagem requer consentimento e modelo aprovado.","refs":"RF-MKT-24 · Ações da base","who":["Marketing"],"seconds":48,"file":"05-horarios"},{"n":6,"total":8,"id":"m-reativacao","title":"Reativação de clientes","start":"","middle":"","end":"","example":"","area":"Marketing / Base","state":"Configuração","summary":"A última visita e a cadência selecionam quem pode receber um convite para voltar. O envio passa pelos controles de consentimento e frequência.","check":"Os períodos iniciais precisam de decisão da Glow Park. Importação incompleta da visita pode distorcer a seleção; confira a fonte antes de ativar.","refs":"RF-MKT-25 · Ações da base","who":["Marketing","Administração"],"seconds":45,"file":"06-reativacao"},{"n":7,"total":8,"id":"m-indicacoes","title":"Indicações","start":"","middle":"","end":"","example":"","area":"Marketing / Relacionamento","state":"Configuração","summary":"Cliente recebe código e link; novas famílias que usam esse código podem ser ligadas à indicação e às festas resultantes.","check":"A recompensa depende das regras aprovadas. Código atribui a indicação; não concede consentimento de marketing à nova família.","refs":"RF-MKT-40 · /marketing/indicacoes","who":["Gestão comercial","Marketing"],"seconds":54,"file":"07-indicacoes"},{"n":8,"total":8,"id":"m-convidados","title":"Convidados da festa","start":"","middle":"","end":"","example":"","area":"Marketing / Relacionamento","state":"Configuração","summary":"Página pública por link e QR Code deixa cada convidado enviar o próprio cadastro e consentimento, com responsável quando necessário.","check":"A página não substitui a identidade já conhecida nem passa por cima de PARAR. Dados de crianças dependem do aceite da régua. Texto e base legal precisam de validação.","refs":"RF-MKT-41 · página da festa","who":["Equipe de festas"],"seconds":52,"file":"08-convidados"}];
+  const $ = (id) => document.getElementById(id);
+  const video = $('video');
+  const list = $('list');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = -1;
+
+  const clock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+  const slug = (c) => c.id.replace(/^[a-z]-/, '');
+  const fromHash = () => CHAPTERS.findIndex((c) => `#${slug(c)}` === location.hash);
+
+  const buttons = CHAPTERS.map((c, i) => {
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.innerHTML =
+      `<span class="n">${String(c.n).padStart(2, '0')}</span><span class="t"></span>` +
+      `<span class="d">${clock(c.seconds)}</span><span class="w"></span>`;
+    b.querySelector('.t').textContent = c.title;
+    b.querySelector('.w').textContent = c.who.join(' · ');
+    b.addEventListener('click', () => {
+      show(i, true);
+      const top = video.getBoundingClientRect().top;
+      if (top < 0 || top > window.innerHeight * 0.5)
+        video.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    li.append(b);
+    list.append(li);
+    return b;
+  });
+
+  function show(i, play) {
+    if (i < 0 || i >= CHAPTERS.length) return;
+    const c = CHAPTERS[i];
+    if (i !== current) {
+      current = i;
+      video.poster = `capas/${c.file}.png`;
+      video.src = `videos/${c.file}.mp4`;
+      $('eyebrow').textContent = `Capítulo ${c.n} de ${c.total} · ${clock(c.seconds)}${c.area ? ` · ${c.area}` : ''}`;
+      $('title').textContent = c.title;
+      $('who').replaceChildren(
+        ...c.who.map((w) => {
+          const li = document.createElement('li');
+          li.textContent = w;
+          return li;
+        }),
+      );
+      // The Financeiro's cards tell a start, a middle and an end; the Comercial's and the Marketing's,
+      // what the feature does and what to check in the operation.
+      const flow = !!c.start;
+      $('flow').hidden = !flow;
+      $('ex').hidden = !flow || !c.example;
+      $('summary').hidden = flow || !c.summary;
+      $('checkLine').hidden = flow || !c.check;
+      $('refs').hidden = flow || !c.refs;
+      $('start').textContent = c.start || '';
+      $('middle').textContent = c.middle || '';
+      $('end').textContent = c.end || '';
+      $('example').textContent = c.example || '';
+      $('summary').textContent = c.summary || '';
+      $('check').textContent = c.check || '';
+      $('refs').textContent = c.refs || '';
+      $('prev').disabled = i === 0;
+      $('next').disabled = i === CHAPTERS.length - 1;
+      buttons.forEach((b, k) => b.setAttribute('aria-current', String(k === i)));
+      if (location.hash !== `#${slug(c)}`) {
+        try {
+          location.replace(`#${slug(c)}`);
+        } catch {
+          /* the hash is a convenience: the chapter shows without it */
+        }
+      }
+    }
+    if (play) video.play().catch(() => {});
+  }
+
+  $('prev').addEventListener('click', () => show(current - 1, true));
+  $('next').addEventListener('click', () => show(current + 1, true));
+  video.addEventListener('ended', () => {
+    if ($('seq').checked && current < CHAPTERS.length - 1) show(current + 1, true);
+  });
+  window.addEventListener('hashchange', () => {
+    const i = fromHash();
+    if (i >= 0 && i !== current) show(i, false);
+  });
+  show(Math.max(0, fromHash()), false);
+</script>
+</body>
+</html>
